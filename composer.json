@@ -1,0 +1,13 @@
+{
+    "name": "gorky/hex-cli",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Gorky\\HexCli\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/console": "^6.0"
+    }
+}
