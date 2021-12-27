@@ -28,8 +28,8 @@ Application
 * `cqh` - `c`reate `q`uery `h`andler
 
 UI
-* `cas` - `c`reate `a`ction `s`ingle response
-* `cal` - `c`reate `a`ction `l`ist response
+* `cas` - `c`reate `a`ction `s`ingle
+* `cal` - `c`reate `a`ction `l`ist
 
 Layer
 * `cml` - `c`reate `m`odule `l`ayer (Domain, Infrastructure, Application, UI)
