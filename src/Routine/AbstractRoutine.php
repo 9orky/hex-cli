@@ -11,7 +11,17 @@ abstract class AbstractRoutine
         return false;
     }
 
+    public function actionKeys(): array
+    {
+        return [];
+    }
+
     public function generators(): array
+    {
+        return [];
+    }
+
+    public function subRoutines(): array
     {
         return [];
     }

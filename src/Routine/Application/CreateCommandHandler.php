@@ -16,9 +16,9 @@ class CreateCommandHandler extends AbstractRoutine implements Routine
         return 'cch';
     }
 
-    public function crudIsh(): bool
+    public function actionKeys(): array
     {
-        return true;
+        return ['Create', 'Update', 'Remove'];
     }
 
     public function suffix(): string

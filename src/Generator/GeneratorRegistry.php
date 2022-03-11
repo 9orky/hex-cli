@@ -12,15 +12,36 @@ use Gorky\HexCli\Generator\Application\Command\CommandHandlerGenerator;
 use Gorky\HexCli\Generator\Application\Query\QueryGenerator;
 use Gorky\HexCli\Generator\Application\Query\QueryHandlerGenerator;
 use Gorky\HexCli\Generator\Domain\Entity\EntityGenerator;
+use Gorky\HexCli\Generator\Domain\Finder\FinderGenerator;
+use Gorky\HexCli\Generator\Domain\Model\ModelGenerator;
+use Gorky\HexCli\Generator\Domain\Repository\RepositoryGenerator;
+use Gorky\HexCli\Generator\Domain\Id\IdValueGenerator;
+use Gorky\HexCli\Generator\Infrastructure\Finder\DefaultFinderGenerator;
+use Gorky\HexCli\Generator\Infrastructure\Repository\DefaultRepositoryGenerator;
+use Gorky\HexCli\Generator\Ui\Action\ActionListGenerator;
+use Gorky\HexCli\Generator\Ui\Action\ActionSingleGenerator;
+use Gorky\HexCli\Generator\Ui\Request\RequestGenerator;
+use Gorky\HexCli\Generator\Ui\Response\ViewGenerator;
 
 class GeneratorRegistry
 {
     private array $registered = [
-        EntityGenerator::class,
         CommandGenerator::class,
         CommandHandlerGenerator::class,
         QueryGenerator::class,
         QueryHandlerGenerator::class,
+        EntityGenerator::class,
+        RepositoryGenerator::class,
+        ModelGenerator::class,
+        FinderGenerator::class,
+        IdValueGenerator::class,
+        DefaultFinderGenerator::class,
+        DefaultRepositoryGenerator::class,
+        ActionSingleGenerator::class,
+        ActionListGenerator::class,
+        RepositoryGenerator::class,
+        RequestGenerator::class,
+        ViewGenerator::class,
     ];
 
     /**
@@ -48,7 +69,7 @@ class GeneratorRegistry
 
     public function getByFqcn(string $fqcn): Generator
     {
-//        var_dump($this->indexedByFqcn, $fqcn);die;
+//        var_dump(array_keys($this->indexedByFqcn));
         return $this->indexedByFqcn[$fqcn];
     }
 }

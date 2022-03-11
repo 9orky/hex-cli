@@ -8,10 +8,18 @@ interface Routine
 {
     public function name(): string;
 
-    public function crudIsh(): bool;
-
     /**
      * @return string[]
      */
     public function generators(): array;
+
+    /**
+     * @return string[]
+     */
+    public function subRoutines(): array;
+
+    /**
+     * @return string[]
+     */
+    public function actionKeys(): array;
 }

@@ -14,9 +14,8 @@ class Bootstrap
     private GeneratorRegistry $generatorRegistry;
 
     public function __construct(
-        private string $subModulePath = 'Order.Order',
-        private string $name = 'Order',
-        private bool $withCrud = true,
+        private string $subModulePath,
+        private string $name,
     ) {
         $config = new Config();
         $this->routineRegistry = new RoutineRegistry();
@@ -27,15 +26,19 @@ class Bootstrap
     {
         $routine = $this->routineRegistry->getByName($routineName);
 
+        foreach ($routine->subRoutines() as $subRoutine) {
+            $this->start($subRoutine);
+        }
+
         $scaffolding = \array_reduce(
             $routine->generators(),
             function(array $acc, string $fqcn) use ($routine) {
-//                var_dump($fqcn);
+                var_dump($fqcn);
                 $generator = $this->generatorRegistry->getByFqcn($fqcn);
 
-                if ($routine->crudIsh() && $this->withCrud) {
-                    foreach (['Create', 'Update', 'Remove'] as $crudOperation) {
-                        $name = $crudOperation . $this->name . $generator->suffix();
+                if ($routine->actionKeys()) {
+                    foreach ($routine->actionKeys() as $actionKey) {
+                        $name = $actionKey . $this->name . $generator->suffix();
                         $acc[$generator->sourceFilePath($name)] = $generator->sourceCode($name);
                     }
                 } else {
@@ -48,27 +51,13 @@ class Bootstrap
             [],
         );
 
-        var_dump(array_keys($scaffolding));
-        die;
+        foreach ($scaffolding as $filename => $source) {
+//            var_dump($filename);
+            if (!is_dir(dirname($filename))) {
+                mkdir(dirname($filename), recursive: true);
+            }
 
-        foreach ($routine->generators() as $fqns) {
-            $generator = $this->generatorRegistry->getByFqcn($fqns);
-            var_dump(
-//                $generator->targetNamespace($this->name),
-//                $generator->fileContent($this->name),
-                $generator->sourceFilePath($this->name),
-            );
-
-//            if (!is_dir($generator->sourceFileDirectory())) {
-//                \mkdir($generator->sourceFileDirectory(), recursive: true);
-//            }
-
-//            \file_put_contents(
-//                $generator->sourceFilePath($this->name),
-//                $generator->fileContent($this->name),
-//            );
+            \file_put_contents($filename, $source);
         }
     }
-
-
 }

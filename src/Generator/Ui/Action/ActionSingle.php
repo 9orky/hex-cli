@@ -10,7 +10,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 
-class ActionSingle extends AbstractRestController
+class ActionSingle //extends AbstractRestController
 {
     /**
      * @Rest\Get("URL", name="ACTION_NAME")

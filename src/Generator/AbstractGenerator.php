@@ -47,13 +47,17 @@ abstract class AbstractGenerator
             $name,
         );
 
-        $content = $this->fileContentReplacer->replaceNamespace(
+        $content = $this->fileContentReplacer->replaceInterfaceName(
+            $content,
+            $reflection->getShortName(),
+            $name,
+        );
+
+        return $this->fileContentReplacer->replaceNamespace(
             $content,
             $reflection->getNamespaceName(),
             $this->targetNamespace($name),
         );
-
-        return $content;
     }
 
     public function targetNamespace(string $name): string

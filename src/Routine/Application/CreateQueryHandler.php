@@ -16,6 +16,16 @@ class CreateQueryHandler extends AbstractRoutine implements Routine
         return 'cqh';
     }
 
+    public function actionKeys(): array
+    {
+        return ['Get'];
+    }
+
+    public function suffix(): string
+    {
+        return 'QueryHandler';
+    }
+
     public function generators(): array
     {
         return [

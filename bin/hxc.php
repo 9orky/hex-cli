@@ -6,4 +6,4 @@ use Gorky\HexCli\Bootstrap;
 
 require_once '../vendor/autoload.php';
 
-(new Bootstrap())->start('cqh');
+(new Bootstrap('Order.Order', 'Order'))->start('all');

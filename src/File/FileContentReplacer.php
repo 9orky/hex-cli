@@ -15,6 +15,15 @@ class FileContentReplacer
         );
     }
 
+    public function replaceInterfaceName(string $sourceCode, string $from, string $to): string
+    {
+        return \str_replace(
+            'interface ' . $from,
+            'interface ' . $to,
+            $sourceCode,
+        );
+    }
+
     public function replaceNamespace(string $sourceCode, string $from, string $to): string
     {
         return \str_replace(

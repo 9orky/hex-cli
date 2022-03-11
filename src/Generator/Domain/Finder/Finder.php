@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gorky\HexCli\Generator\Domain\Query;
+namespace Gorky\HexCli\Generator\Domain\Finder;
 
-interface ModelRepository
+interface Finder
 {
     public function getById(object $id): object;
 

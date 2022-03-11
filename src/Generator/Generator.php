@@ -10,10 +10,6 @@ interface Generator
 
     public function suffix(): string;
 
-    public function targetNamespace(string $name): string;
-
-    public function sourceFileDirectory(): string;
-
     public function sourceFilePath(string $name): string;
 
     public function sourceCode(string $name): string;
