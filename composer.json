@@ -8,8 +8,6 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "symfony/console": "^6.0",
-        "symfony/maker-bundle": "^1.36",
-      "ext-yaml": "*"
+        "symfony/console": "^6.0"
     }
 }

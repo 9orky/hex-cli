@@ -20,7 +20,7 @@ class Config
 //        $this->namespacePrefix = $config['namespace_prefix'];
 
         $this->sourceDir = 'src';
-        $this->namespacePrefix = 'App';
+        $this->namespacePrefix = 'App\Core';
     }
 
     public function getSourceDir(): string

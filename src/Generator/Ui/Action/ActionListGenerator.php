@@ -6,12 +6,13 @@ namespace Gorky\HexCli\Generator\Ui\Action;
 
 use Gorky\HexCli\Generator\AbstractGenerator;
 use Gorky\HexCli\Generator\Generator;
+use Gorky\HexCli\Generator\Ui\UiLayer;
 
 class ActionListGenerator extends AbstractGenerator implements Generator
 {
     public function layerPath(): string
     {
-        return 'Ui\Action';
+        return UiLayer::LAYER_NAME . '\Action';
     }
 
     public function suffix(): string

@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-use Gorky\HexCli\Bootstrap;
-
 require_once '../vendor/autoload.php';
 
-(new Bootstrap('Order.Order', 'Order'))->start('all');
+use Gorky\HexCli\Command\HxcCommand;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$application->add(new HxcCommand());
+$application->run();

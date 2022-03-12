@@ -6,11 +6,6 @@ namespace Gorky\HexCli\Routine;
 
 abstract class AbstractRoutine
 {
-    public function crudIsh(): bool
-    {
-        return false;
-    }
-
     public function actionKeys(): array
     {
         return [];

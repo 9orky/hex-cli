@@ -28,11 +28,10 @@ abstract class AbstractGenerator
     protected function concatToFqcn(string $prefix, string $layerPath, string $name): string
     {
         return \sprintf(
-            '%s\\%s\\%s\\%s',
+            '%s\\%s\\%s',
             $prefix,
             $this->subModulePath(),
             $layerPath,
-            $name,
         );
     }
 
@@ -60,7 +59,7 @@ abstract class AbstractGenerator
         );
     }
 
-    public function targetNamespace(string $name): string
+    private function targetNamespace(string $name): string
     {
         $namespacePrefix = $this->config->getNamespacePrefix();
 
@@ -71,7 +70,7 @@ abstract class AbstractGenerator
         );
     }
 
-    public function sourceFileDirectory(): string
+    private function sourceFileDirectory(): string
     {
         $sourceDir = $this->config->getSourceDir();
         $subModule = \str_replace('\\', '/', $this->subModulePath());

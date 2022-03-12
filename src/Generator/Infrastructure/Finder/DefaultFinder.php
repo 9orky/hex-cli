@@ -6,6 +6,11 @@ namespace Gorky\HexCli\Generator\Infrastructure\Finder;
 
 class DefaultFinder //implements Finder
 {
+    public function __construct(
+
+    ) {
+    }
+
     public function getById(object $id): object
     {
         // TODO: Implement getById() method.

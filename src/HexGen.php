@@ -8,18 +8,18 @@ use Gorky\HexCli\Generator\Generator;
 use Gorky\HexCli\Generator\GeneratorRegistry;
 use Gorky\HexCli\Routine\RoutineRegistry;
 
-class Bootstrap
+class HexGen
 {
     private RoutineRegistry $routineRegistry;
     private GeneratorRegistry $generatorRegistry;
 
     public function __construct(
-        private string $subModulePath,
-        private string $name,
+        string $subModulePath,
+        private string $modelName,
     ) {
         $config = new Config();
         $this->routineRegistry = new RoutineRegistry();
-        $this->generatorRegistry = new GeneratorRegistry($config, $this->subModulePath);
+        $this->generatorRegistry = new GeneratorRegistry($config, $subModulePath);
     }
 
     public function start(string $routineName): void
@@ -33,16 +33,15 @@ class Bootstrap
         $scaffolding = \array_reduce(
             $routine->generators(),
             function(array $acc, string $fqcn) use ($routine) {
-                var_dump($fqcn);
                 $generator = $this->generatorRegistry->getByFqcn($fqcn);
 
                 if ($routine->actionKeys()) {
                     foreach ($routine->actionKeys() as $actionKey) {
-                        $name = $actionKey . $this->name . $generator->suffix();
+                        $name = $actionKey . $this->modelName . $generator->suffix();
                         $acc[$generator->sourceFilePath($name)] = $generator->sourceCode($name);
                     }
                 } else {
-                    $name = $this->name . $generator->suffix();
+                    $name = $this->modelName . $generator->suffix();
                     $acc[$generator->sourceFilePath($name)] = $generator->sourceCode($name);
                 }
 
@@ -52,7 +51,6 @@ class Bootstrap
         );
 
         foreach ($scaffolding as $filename => $source) {
-//            var_dump($filename);
             if (!is_dir(dirname($filename))) {
                 mkdir(dirname($filename), recursive: true);
             }

@@ -6,7 +6,8 @@ namespace Gorky\HexCli\Generator\Domain\Model;
 
 class Model
 {
-    public function __construct()
-    {
+    public function __construct(
+
+    ) {
     }
 }

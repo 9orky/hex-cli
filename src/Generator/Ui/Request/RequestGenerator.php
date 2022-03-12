@@ -6,12 +6,13 @@ namespace Gorky\HexCli\Generator\Ui\Request;
 
 use Gorky\HexCli\Generator\AbstractGenerator;
 use Gorky\HexCli\Generator\Generator;
+use Gorky\HexCli\Generator\Ui\UiLayer;
 
 class RequestGenerator extends AbstractGenerator implements Generator
 {
     public function layerPath(): string
     {
-        return 'Ui\Request';
+        return UiLayer::LAYER_NAME . '\Request';
     }
 
     public function suffix(): string
